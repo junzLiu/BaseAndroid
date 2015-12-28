@@ -22,4 +22,13 @@
     <color name="bs_divider_color">#1e1e1e</color>
     <color name="bs_primary_color">#3f51b5</color>
     <color name="bs_accent_color">#ff4081</color>
+
+    <color name="text_content_color">#666666</color>
+    <color name="text_hint_color">#afb2b3</color>
+    <color name="text_edit_color">#000000</color>
+    <color name="text_black">#333333</color>
+    <color name="text_red">#fd5555</color>
+    <color name="divider">#d9d9d9</color>
+    <color name="transparent">#00000000</color>
+    <color name="popup_item_text_color">#217cd7</color>
 </resources>

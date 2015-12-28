@@ -1,5 +1,6 @@
 package com.android.base.assist.widget;
 
+import android.base.com.baseandroid.R;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,7 +19,6 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.android.senba.R;
 
 /**
  * @module
@@ -95,7 +95,7 @@ public class ListPopWindow implements View.OnClickListener {
 	/**
 	 * 设置标题
 	 * 
-	 * @param contentId
+	 * @param title
 	 * @return
 	 */
 	public ListPopWindow setTitle(String title) {
@@ -107,7 +107,7 @@ public class ListPopWindow implements View.OnClickListener {
 	/**
 	 * 设置标题
 	 * 
-	 * @param contentId
+	 * @param titleId
 	 * @return
 	 */
 	public ListPopWindow setTitle(int titleId) {
@@ -119,7 +119,7 @@ public class ListPopWindow implements View.OnClickListener {
 	/**
 	 * 设置文本内容
 	 * 
-	 * @param contentId
+	 * @param content
 	 * @return
 	 */
 	public ListPopWindow setContent(String content) {

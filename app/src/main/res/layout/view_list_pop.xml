@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="content content content"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_hint_color"
                 android:textSize="16sp" />
 
             <View 
@@ -56,7 +56,7 @@
                 android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:cacheColorHint="@color/no_color"
+                android:cacheColorHint="@color/transparent"
                 android:divider="@color/divider"
                 android:dividerHeight="0.5dp"
                 android:overScrollMode="never"
@@ -72,9 +72,9 @@
             android:background="@drawable/pop_white_bg"
             android:gravity="center"
             android:padding="12dp"
-            android:textColor="@color/popup_item_text_color"
+            android:textColor="@color/text_content_color"
             android:textSize="16sp" 
-            android:text="@string/pop_cancel"/>
+            android:text="@string/cancel"/>
     </LinearLayout>
 
 </LinearLayout>
