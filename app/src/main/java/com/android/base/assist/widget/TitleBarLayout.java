@@ -594,7 +594,7 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 			setCacheColorHint(0);
 			// Transparent, since the background drawable
 			// could be anything.
-			setSelector(color.transparent);
+			setSelector(R.color.transparent);
 		}
 
 		@Override
