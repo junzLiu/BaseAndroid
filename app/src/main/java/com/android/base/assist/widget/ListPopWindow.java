@@ -78,7 +78,6 @@ public class ListPopWindow implements View.OnClickListener {
 		mPopWindow = new PopupWindow(mPopWindowView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 		initAnim();
-
 	}
 
 	/**
@@ -214,10 +213,7 @@ public class ListPopWindow implements View.OnClickListener {
 	}
 
 	public boolean isShowing() {
-		if (mPopWindow != null && mPopWindow.isShowing())
-			return true;
-		else
-			return false;
+		return mPopWindow != null && mPopWindow.isShowing();
 	}
 
 	private void initAnim() {

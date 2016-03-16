@@ -108,8 +108,8 @@ public class DeviceUtil {
 		if (Build.VERSION.SDK_INT >= 9)
 			try {
 				Class clazz = Class.forName("android.os.SystemProperties");
-				Method method = clazz.getMethod("get", new Class[] { String.class, String.class });
-				serialno = (String) method.invoke(clazz, new Object[] { "ro.serialno", "unknown" });
+				Method method = clazz.getMethod("get", String.class, String.class);
+				serialno = (String) method.invoke(clazz, "ro.serialno", "unknown");
 			} catch (Exception e) {
 				e.printStackTrace();
 				serialno = null;
@@ -435,7 +435,7 @@ public class DeviceUtil {
 				ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 				if (manager == null)
 					return null;
-				ActivityManager.RunningTaskInfo localRunningTaskInfo = (ActivityManager.RunningTaskInfo) manager.getRunningTasks(
+				ActivityManager.RunningTaskInfo localRunningTaskInfo = manager.getRunningTasks(
 						1).get(0);
 				return localRunningTaskInfo.topActivity.getPackageName();
 			} catch (Exception e) {
