@@ -23,7 +23,7 @@ import android.widget.TextView;
 /**
  * @module
  * @title
- * @function
+ * @function 列表弹出框
  * @author Mark
  * @version 1.0
  * @createTime 2015年10月22日 下午5:29:55

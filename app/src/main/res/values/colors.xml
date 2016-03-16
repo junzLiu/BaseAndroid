@@ -2,6 +2,7 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="white">#ffffff</color>
+    <color name="actionbar_text_grey">#afb2b3</color>
     
     <!-- white style color  -->
     <color name="ws_color">#ffffffff</color>

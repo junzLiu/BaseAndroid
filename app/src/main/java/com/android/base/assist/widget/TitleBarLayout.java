@@ -26,6 +26,9 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.base.assist.tools.LogUtil;
+import com.android.base.assist.tools.TransformUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +92,6 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 	private static final Handler sHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			LogUtil.d("TitleBarLayout", "msg:" + msg.what);
-			Log
 			TitleBarLayout obj = (TitleBarLayout) msg.obj;
 			if (obj.mActionListener != null) {
 				obj.mActionListener.onActionPerformed(msg.what);
@@ -204,11 +206,11 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 				btn.setTextSize(15);
 				btn.setClickable(true);
 				ColorStateList csl = this.getResources().getColorStateList(
-						R.color.dairy_top_text_selector);
+						R.color.selector_action_text);
 				if (csl != null) {
 					btn.setTextColor(csl);
 				} else {
-					btn.setTextColor(ResourceUtils.getColor(getContext(), R.color.dairy_top_text_selector));
+					btn.setTextColor(getResources().getColor( R.color.selector_action_text));
 				}
 				btn.setGravity(Gravity.CENTER);
 				if (ai.icon != 0) {
@@ -222,11 +224,12 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 				tv.setText(ai.title);
 				tv.setTextSize(13);
 				ColorStateList csl = this.getResources().getColorStateList(
-						R.color.dairy_top_text_selector);
+						R.color.selector_action_text);
 				if (csl != null) {
 					tv.setTextColor(csl);
 				} else {
-					tv.setTextColor(ResourceUtils.getColor(getContext(), R.color.dairy_top_text_selector));
+					tv.setTextColor(getResources().getColor(R.color.selector_action_text));
+
 				}
 				tv.setGravity(Gravity.CENTER);
 				view = tv;
@@ -319,14 +322,14 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 			tv.setText(title);
 			if (clickable) {
 				ColorStateList csl = this.getResources().getColorStateList(
-						R.color.dairy_top_text_selector);
+						R.color.selector_action_text);
 				if (csl != null) {
 					tv.setTextColor(csl);
 				} else {
-					tv.setTextColor(ResourceUtils.getColor(getContext(), R.color.dairy_top_text_selector));
+					tv.setTextColor(getResources().getColor(R.color.selector_action_text));
 				}
 			} else {
-				tv.setTextColor(ResourceUtils.getColor(getContext(), R.color.dairy_day_text));
+				tv.setTextColor(getResources().getColor(R.color.actionbar_text_grey));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -591,7 +594,7 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 			setCacheColorHint(0);
 			// Transparent, since the background drawable
 			// could be anything.
-			setSelector(R.color.transparent);
+			setSelector(color.transparent);
 		}
 
 		@Override
