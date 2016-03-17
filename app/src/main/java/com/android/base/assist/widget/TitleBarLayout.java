@@ -49,6 +49,7 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 	private LinearLayout mCenterLayout;
 	private LinearLayout mRightLayout;
 
+	private ImageView mCloseIv;
 	private ImageView mBackIndicator;
 	private ImageView mIconIv;
 	private TextView mTitleTextTv;
@@ -70,7 +71,7 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 
 	public interface TitleBackListener {
 		void onBackClick();
-
+		void onCloseClick();
 	}
 
 	public interface TitleNaviItemsListener {
@@ -116,6 +117,7 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 		addView(makeRightLayout());
 		setBackgroundResource(R.drawable.home_top_bg);
 		requestLayout();
+		mCloseIv.setVisibility(View.GONE);
 	}
 
 	private View makeLeftLayout() {
@@ -158,6 +160,18 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 		mBackIndicator.setImageResource(DEFAULT_BANK_ICON);
 		mBackIndicator.setBackgroundResource(R.drawable.action_item_bg);
 		return mBackIndicator;
+	}
+
+	private ImageView makeCloseIv(){
+		mCloseIv = new ImageView(getContext());
+		LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+		lp.width = TransformUtil.dip2px(getContext(), 40);
+		mCloseIv.setLayoutParams(lp);
+		mCloseIv.setScaleType(ScaleType.CENTER);
+		mCloseIv.setOnClickListener(new ViewClickListener());
+		mCloseIv.setImageResource(R.drawable.icon_title_close);
+		mCloseIv.setBackgroundResource(R.drawable.action_item_bg);
+		return mCloseIv;
 	}
 
 	private TextView makeTitleTextTv() {
@@ -469,6 +483,14 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 		}
 	}
 
+	public void showCloseIndicator(boolean isShow){
+		if(isShow){
+			mCloseIv.setVisibility(View.VISIBLE);
+		}else{
+			mCloseIv.setVisibility(View.GONE);
+		}
+	}
+
 	public void setTitleText(String text) {
 		mTitleTextTv.setText(text);
 	}
@@ -514,6 +536,10 @@ public class TitleBarLayout extends RelativeLayout implements OnItemClickListene
 			} else if (v == mNaviIv) {
 				if (mNaviList != null && mNaviList.size() > 0) {
 					showPopupWindow();
+				}
+			}else if(v == mCloseIv){
+				if(mBackListener != null){
+					mBackListener.onCloseClick();
 				}
 			}
 		}
