@@ -51,7 +51,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
     /**
      * 退出页面方法，子类有需要可以重写
      */
-    protected void onBack() {
+    public void onBack() {
         this.finish();
         hideProgressDialog();
     }
@@ -60,6 +60,12 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
     public void onBackPressed() {
         super.onBackPressed();
         onBack();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        hideProgressDialog();
     }
 
     private void initView(){
@@ -99,14 +105,14 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * 添加引导浮层
      * @param layoutId 浮层布局
      */
-    protected void addGuideLayout(int layoutId){
+    public void addGuideLayout(int layoutId){
         mGuideLayoutRidList.add(layoutId);
     }
 
     /**
      * 显示引导浮层
      */
-    protected void showGuide() {
+    public void showGuide() {
         if (mGuideLayoutRidList.size() > 0) {
 
             if(mGuidePostion>=mGuideLayoutRidList.size()){
@@ -126,7 +132,6 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
             mGuideLayout.setVisibility(View.VISIBLE);
             mGuidePostion++;
 
-
         } else {
             mGuideLayout.setVisibility(View.GONE);
         }
@@ -144,7 +149,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
     /**
      * 显示loadingView 子类可以重写
      */
-    protected void showLoadingView() {
+    public void showLoadingView() {
         if (mLoadingView == null) {
             initLoadingView();
         }
@@ -156,7 +161,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * 设置loadingView的背景颜色
      * @param color
      */
-    protected void setLoadingViewBG(int color) {
+    public void setLoadingViewBG(int color) {
         if (mLoadingView == null) {
             initLoadingView();
         }
@@ -164,7 +169,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
         mContentLayout.setVisibility(View.VISIBLE);
     }
 
-    protected LoadingView getLoadingView(){
+    public LoadingView getLoadingView(){
         return mLoadingView;
     }
 
@@ -172,18 +177,17 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      *
      * @param resourceId
      */
-    protected void setLoadingTextColor(int resourceId){
+    public void setLoadingTextColor(int resourceId){
         if(mLoadingView == null){
             initLoadingView();
         }
-
         mLoadingView.setTipTextColor(resourceId);
     }
 
     /**
      * 隐藏loadingView 子类可以重写
      */
-    protected void hideLoadingView() {
+    public void hideLoadingView() {
         if (mLoadingView == null){
             initLoadingView();
         }
@@ -199,7 +203,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * @param emptyDrawableResorceId
      *            值-1时默认为 R.drawable.no_data 提示icon
      */
-    protected void showEmptyView(String emptyTip, int emptyDrawableResorceId) {
+    public void showEmptyView(String emptyTip, int emptyDrawableResorceId) {
         showEmptyView(emptyTip, emptyDrawableResorceId, false);
     }
 
@@ -231,7 +235,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * @param tipIcon
      *            提示icon 当值为-1时默认为 R.drawable.wait_view_retry
      * */
-    protected void showErrorView(String tipString, int tipIcon) {
+    public void showErrorView(String tipString, int tipIcon) {
         showErrorView(tipString, tipIcon, false);
     }
 
@@ -245,7 +249,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * @param showContentLayout 是否显示页面
      * */
 
-    protected void showErrorView(String tipString,int tipIcon,boolean showContentLayout){
+    public void showErrorView(String tipString,int tipIcon,boolean showContentLayout){
         if (mLoadingView == null) {
             initLoadingView();
         }
@@ -267,7 +271,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      *
      * @param message
      */
-    protected void showProgressDialog(String message) {
+    public void showProgressDialog(String message) {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
         }
@@ -279,14 +283,14 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * show a progress dialog
      *
      */
-    protected void showProgressDialog(int messageRid) {
+    public void showProgressDialog(int messageRid) {
         showProgressDialog(getString(messageRid));
     }
 
     /**
      * hide a progress dialog
      */
-    protected void hideProgressDialog() {
+    public void hideProgressDialog() {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
@@ -304,7 +308,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * @param hasNav
      *            是否有更多按钮
      */
-    protected void initTitleView(String titleText, boolean hasBack,
+    public void initTitleView(String titleText, boolean hasBack,
                                  boolean hasNav) {
         mTitleBarLayout.setVisibility(View.VISIBLE);
         mTitleBarLayout.showBackIndicator(hasBack);
@@ -318,15 +322,19 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
     /**
      * 初始化titleView 子类有需要可以重写
      */
-    protected void initTitleView(String titleText,boolean hasBack,boolean hasNav,boolean hasClose) {
+    public void initTitleView(String titleText,boolean hasBack,boolean hasNav,boolean hasClose) {
         this.initTitleView(titleText, hasBack, hasNav);
         mTitleBarLayout.showCloseIndicator(hasClose);
+    }
+
+    public TitleBarLayout getTitleView(){
+        return mTitleBarLayout;
     }
 
     /**
      * hide titleView
      */
-    protected void hideTitleView(){
+    public void hideTitleView(){
         if(mTitleBarLayout != null){
             mTitleBarLayout.setVisibility(View.GONE);
         }
@@ -338,7 +346,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * @param actionName name
      * @param clickable 是否可以点击
      */
-    protected void updateTitleAction(int id,String actionName,boolean clickable){
+    public void updateTitleAction(int id,String actionName,boolean clickable){
         if(!mTitleBarLayout.hasAction(id)){
             mTitleBarLayout.addTextAction(actionName, id, clickable);
         }else{
@@ -357,7 +365,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
      * @param imageResorceId 图片资源
      * @param clickable
      */
-    protected void updateTitleAction(int id,int imageResorceId,boolean clickable){
+    public void updateTitleAction(int id,int imageResorceId,boolean clickable){
         if(!mTitleBarLayout.hasAction(id)){
             mTitleBarLayout.addIconAction(imageResorceId, id, clickable);
         }else{
@@ -373,7 +381,7 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
     /**
      * 初始化titleView 子类有需要可以重写
      */
-    protected void initTitleView(int resid,boolean hasBack,boolean hasNav) {
+    public void initTitleView(int resid,boolean hasBack,boolean hasNav) {
         mTitleBarLayout.setVisibility(View.VISIBLE);
         mTitleBarLayout.showBackIndicator(hasBack);
         mTitleBarLayout.showNavigation(hasNav);
@@ -391,6 +399,16 @@ public abstract class BaseActivity extends FragmentActivity implements LoadingVi
 
     @Override
     public void onBackClick() {
+         onBack();
+    }
+
+    @Override
+    public void onCloseClick() {
+          onBack();
+    }
+
+    @Override
+    public void onActionPerformed(int id) {
 
     }
 }
